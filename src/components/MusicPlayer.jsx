@@ -25,6 +25,12 @@ export default function MusicPlayer({ songs }) {
     }
   }, [volume]);
 
+  useEffect(() => {
+    if (audioRef.current && playing) {
+      audioRef.current.play().catch(() => {});
+    }
+  }, [current, playing]);
+
   const togglePlay = () => {
     if (!audioRef.current) return;
     if (playing) {
