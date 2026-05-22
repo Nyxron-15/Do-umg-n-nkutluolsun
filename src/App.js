@@ -107,11 +107,17 @@ export default function App() {
         <button
           onClick={() => {
             setStarted(true);
-            const audio = document.getElementById('bg-music');
-            if (audio) {
-              audio.muted = false;
-              audio.play().catch(() => {});
-            }
+            setTimeout(() => {
+              const audio = document.getElementById('bg-music');
+              if (audio) {
+                audio.muted = false;
+                audio.volume = 0.5;
+                const promise = audio.play();
+                if (promise !== undefined) {
+                  promise.catch(() => console.log('Autoplay başarısız'));
+                }
+              }
+            }, 100);
           }}
           style={{
             background: '#e11d48',
@@ -136,7 +142,7 @@ export default function App() {
         loop 
         autoPlay
         muted
-        src={process.env.PUBLIC_URL + '/songs/redd.mp3'} 
+        src={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL + '/songs/redd.mp3' : '/songs/redd.mp3'} 
       />
       <Hero name={GIRLFRIEND_NAME} />
       <LoveLetter content={LOVE_LETTER} />
