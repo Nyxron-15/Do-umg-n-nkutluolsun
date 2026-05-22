@@ -136,7 +136,7 @@ export default function App() {
         loop 
         autoPlay
         muted
-        src="/songs/redd.mp3" 
+        src={process.env.PUBLIC_URL + '/songs/redd.mp3'} 
       />
       <Hero name={GIRLFRIEND_NAME} />
       <LoveLetter content={LOVE_LETTER} />
