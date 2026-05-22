@@ -3,7 +3,6 @@ import './index.css';
 import Hero from './components/Hero';
 import LoveLetter from './components/LoveLetter';
 import Timeline from './components/Timeline';
-import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
 
 // ══════════════════════════════════════════════
