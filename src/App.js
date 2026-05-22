@@ -75,14 +75,63 @@ const SONGS = [
 ];
 
 // ══════════════════════════════════════════════
-
 export default function App() {
+  React.useEffect(() => {
+  const interval = setInterval(() => {
+    const heart = document.createElement('div');
+    heart.textContent = '❤️';
+    heart.className = 'heart-fall';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 4) + 's';
+    heart.style.fontSize = (12 + Math.random() * 20) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 400);
+  return () => clearInterval(interval);
+}, []);
+  const [started, setStarted] = React.useState(false);
+
+  if (!started) {
+    return (
+      <div style={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#fff1f3',
+      }}>
+        <div style={{ fontSize: 64, marginBottom: '1.5rem' }}>💕</div>
+        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', color: '#2d1a22', marginBottom: '2rem' }}>
+          Sana özel bir şey var...
+        </p>
+        <button
+          onClick={() => {
+            setStarted(true);
+            setTimeout(() => document.getElementById('bg-music')?.play(), 100);
+          }}
+          style={{
+            background: '#e11d48',
+            color: 'white',
+            border: 'none',
+            borderRadius: 50,
+            padding: '1rem 2.5rem',
+            fontSize: '1.1rem',
+            cursor: 'pointer',
+          }}
+        >
+          Aç 🌹
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
+      <audio id="bg-music" loop src={process.env.PUBLIC_URL + '/songs/redd.mp3'} />
       <Hero name={GIRLFRIEND_NAME} />
       <LoveLetter content={LOVE_LETTER} />
       <Timeline memories={MEMORIES} />
-      <MusicPlayer songs={SONGS} />
       <Footer from={YOUR_NAME} />
     </>
   );

@@ -55,15 +55,25 @@ export default function LoveLetter({ content }) {
 
       {/* envelope */}
       <div
-        onClick={() => setOpened(true)}
-        style={{
-          cursor: opened ? 'default' : 'pointer',
-          width: '100%',
-          maxWidth: 640,
-          position: 'relative',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'none' : 'translateY(30px)',
-          transition: 'all 0.8s ease 0.2s',
+        onClick={() => {
+          setOpened(true);
+          for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+              const heart = document.createElement('div');
+              heart.textContent = ['❤️','💕','💖','💗','💓'][Math.floor(Math.random()*5)];
+              heart.style.cssText = `
+                position: fixed;
+                top: ${20 + Math.random() * 60}vh;
+                ${Math.random() > 0.5 ? 'left: ' + (Math.random() * 15) + 'vw' : 'right: ' + (Math.random() * 15) + 'vw'};
+                font-size: ${20 + Math.random() * 30}px;
+                pointer-events: none;
+                z-index: 9999;
+                animation: fadeUp 1.5s ease forwards;
+              `;
+              document.body.appendChild(heart);
+              setTimeout(() => heart.remove(), 1500);
+            }, i * 100);
+          }
         }}
       >
         {/* envelope card */}

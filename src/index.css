@@ -69,3 +69,24 @@ body {
 .fade-up {
   animation: fadeUp 0.8s ease both;
 }
+@keyframes fallHeart {
+  0%   { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-80px); }
+}
+
+.heart-fall {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  animation: fallHeart linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-80px); }
+}
