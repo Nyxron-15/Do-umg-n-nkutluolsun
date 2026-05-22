@@ -108,7 +108,11 @@ export default function App() {
         <button
           onClick={() => {
             setStarted(true);
-            setTimeout(() => document.getElementById('bg-music')?.play(), 100);
+            const audio = document.getElementById('bg-music');
+            if (audio) {
+              audio.muted = false;
+              audio.play().catch(() => {});
+            }
           }}
           style={{
             background: '#e11d48',
@@ -128,7 +132,13 @@ export default function App() {
 
   return (
     <>
-      <audio id="bg-music" loop src={process.env.PUBLIC_URL + '/songs/redd.mp3'} />
+      <audio 
+        id="bg-music" 
+        loop 
+        autoPlay
+        muted
+        src="/songs/redd.mp3" 
+      />
       <Hero name={GIRLFRIEND_NAME} />
       <LoveLetter content={LOVE_LETTER} />
       <Timeline memories={MEMORIES} />

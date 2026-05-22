@@ -321,9 +321,7 @@ export default function MusicPlayer({ songs }) {
         ))}
       </div>
 
-      <audio ref={audioRef} src={song.src} onEnded={() => {
-        changeSong((current + 1) % songs.length);
-      }} />
+      {/* Arka planda Redd çalıyor */}
     </section>
   );
 }
